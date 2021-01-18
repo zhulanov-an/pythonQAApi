@@ -93,7 +93,7 @@ def test_unique_name_image_by_random_collection(breed, base_url):
 
 
 @pytest.mark.parametrize("breed", breeds_lists())
-def test_random_image_by_breed(breed, base_url):
+def test_random_image_by_online_breed(breed, base_url):
     url = f"{base_url}/breed/{breed}/images/random"
     resp = requests.get(url)
     assert resp.ok
