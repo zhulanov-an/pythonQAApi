@@ -7,4 +7,4 @@
 Параметры реализованы через pytest.addoption
 
 пример запуска: 
-`pytest test_module.py --url=https://mail.ru --status_code=200`
+`pytest --url=https://mail.ru --status_code=200`
