@@ -88,7 +88,6 @@ def test_unique_name_image_by_random_collection(breed, base_url):
     assert resp_1.ok
     assert resp_2.ok
     assert res_1["status"] == res_2["status"] == "success"
-
     assert res_1["message"] != res_2["message"]
 
 
