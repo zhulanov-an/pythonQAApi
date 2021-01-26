@@ -11,15 +11,6 @@ import pytest
 '''
 
 
-def breeds_lists():
-    url = f"https://dog.ceo/api/breeds/list/all"
-
-    resp = requests.get(url)
-    assert resp.ok
-    res = resp.json()
-    return res["message"].keys()
-
-
 def test_list_breeds(base_url):
     resp = requests.get(f"{base_url}/breeds/list/all")
     assert resp.ok
@@ -77,7 +68,7 @@ def test_schema_images_by_breed(base_url):
     validate(instance=res, schema=schema)
 
 
-@pytest.mark.parametrize("breed", ["beagle", "akita", "borzoi"])
+@pytest.mark.parametrize("breed", ["beagle", "borzoi"])
 def test_unique_name_image_by_random_collection(breed, base_url):
     url = f"{base_url}/breed/{breed}/images/random"
     resp_1 = requests.get(url)
@@ -92,12 +83,11 @@ def test_unique_name_image_by_random_collection(breed, base_url):
     assert res_1["message"] != res_2["message"]
 
 
-@pytest.mark.parametrize("breed", breeds_lists())
-def test_random_image_by_online_breed(breed, base_url):
-    url = f"{base_url}/breed/{breed}/images/random"
+def test_random_image_by_online_breed(id, base_url):
+    url = f"{base_url}/breed/{id}/images/random"
     resp = requests.get(url)
     assert resp.ok
     res = resp.json()
-    assert breed in res["message"]
+    assert id in res["message"]
     assert res["message"].endswith((".jpg", ".jpeg"))
     assert res["status"] == "success"
