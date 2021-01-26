@@ -2,13 +2,13 @@ import requests
 from jsonschema import validate
 import pytest
 
-'''
+"""
 1. Тестирование REST сервиса 1
 Написать минимум 5 тестов для REST API сервиса: https://dog.ceo/dog-api/.
 Как минимум 2 из 5 должны использовать параметризацию.
 Документация к API есть на сайте.
 Тесты должны успешно проходить.
-'''
+"""
 
 
 def test_list_breeds(base_url):
@@ -79,7 +79,6 @@ def test_unique_name_image_by_random_collection(breed, base_url):
     assert resp_1.ok
     assert resp_2.ok
     assert res_1["status"] == res_2["status"] == "success"
-
     assert res_1["message"] != res_2["message"]
 
 
